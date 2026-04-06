@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>FREE Tools Hub - Instagram | YouTube | PDF | QR</title>
+    
+    <!-- Google AdSense Auto Ads Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811596929510799"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fff, #a8b5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .subtitle span {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            font-size: 0.9rem;
+        }
+
+        .stat strong {
+            color: #a8b5ff;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .tool-card p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            font-size: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            word-break: break-all;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+
+        .result a {
+            color: #a8b5ff;
+            text-decoration: none;
+        }
+
+        /* Ad Section */
+        .ad-space {
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .header {
+                padding: 20px;
+                border-radius: 40px;
+            }
+            .subtitle span {
+                font-size: 0.7rem;
+            }
+            .tool-card {
+                padding: 20px;
+            }
+            .stats-bar {
+                gap: 15px;
+            }
+            .stat {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+            }
+        }
+
+        select option {
+            background: #1a1a2e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ FREE Utility Hub</h1>
+            <div class="subtitle">
+                <span>⚡ No Signup</span>
+                <span>🎯 100% Free</span>
+                <span>📱 Mobile Ready</span>
+                <span>🚀 Instant Tools</span>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat"><strong>8+</strong> Powerful Tools</div>
+            <div class="stat"><strong>∞</strong> Unlimited Uses</div>
+            <div class="stat"><strong>🔒</strong> Private & Secure</div>
+        </div>
+
+        <div class="tools-grid">
+            
+            <!-- Tool 1: Instagram Downloader -->
+            <div class="tool-card">
+                <div class="tool-icon">📸</div>
+                <h2>Instagram Reels/Video Downloader</h2>
+                <p>Download any Instagram video, reel, or story without watermark</p>
+                <input type="text" id="instaUrl" placeholder="Paste Instagram URL here...">
+                <button onclick="downloadInstagram()">⬇️ Download Video</button>
+                <div id="instaResult" class="result" style="display:none;"></div>
+            </div>
+
+            <!-- Tool 2: YouTube to MP3 -->
+            <div class="tool-card">
+                <div class="tool-icon">🎵</div>
+                <h2>YouTube to MP3 Converter</h2>
+                <p>Convert any YouTube video to high quality MP3 audio</p>
+                <input type="text" id="ytmp3Url" placeholder="Paste YouTube URL here...">
+                <button onclick="convertToMP3()">🎧 Convert to MP3</button>
+                <div id="mp3Result" class="result" style="display:none;"></div>
+            </div>
+
+            <!-- Tool 3: Background Remover -->
+            <div class="tool-card">
+                <div class="tool-icon">🖼️</div>
+                <h2>Background Remover</h2>
+                <p>Remove image background instantly - perfect for product photos</p>
+                <input type="file" id="bgImage" accept="image/*">
+                <button onclick="removeBackground()">✨ Remove Background</button>
+                <div id="bgResult" class="result" style="display:none;"></div>
+            </div>
+
+            <!-- Tool 4: PDF to JPG -->
+            <div class="tool-card">
+                <div class="tool-icon">📄</div>
+                <h2>PDF to JPG Converter</h2>
+                <p>Convert PDF pages to high quality JPG images</p>
+                <input type="file" id="pdfFile" accept=".pdf">
+                <button onclick="convertPDFtoJPG()">🖼️ Convert to JPG</button>
+                <div id="pdfResult" class="result" style="display:none;"></div>
+            </div>
+
+            <!-- Tool 5: YouTube Thumbnail -->
+            <div class="tool-card">
+                <div class="tool-icon">🖼️</div>
+                <h2>YouTube Thumbnail Downloader</h2>
+                <p>Download HD thumbnails from any YouTube video</p>
+                <input type="text" id="youtubeUrl" placeholder="Paste YouTube URL here...">
+                <button onclick="downloadThumbnail()">📥 Get Thumbnail</button>
+                <div id="thumbnailResult" class="result" style="display:none;"></div>
+            </div>
+
+            <!-- Tool 6: QR Code -->
+            <div class="tool-card">
+                <div class="tool-icon">📱</div>
+                <h2>QR Code Generator</h2>
+                <p>Create custom QR codes for any text, URL or contact</p>
+                <input type="text" id="qrText" placeholder="Enter text or URL...">
+                <button onclick="generateQR()">🔲 Generate QR Code</button>
+                <div id="qrResult" class="result" style="display:none;"></div>
+            </div>
+
+            <!-- Tool 7: Text to Speech -->
+            <div class="tool-card">
+                <div class="tool-icon">🔊</div>
+                <h2>Text to Speech</h2>
+                <p>Convert any text to natural sounding voice (English/Hindi)</p>
+                <textarea id="ttsText" rows="2" placeholder="Type something to speak..."></textarea>
+                <select id="voiceSelect">
+                    <option value="en-US">🇬🇧 English (US)</option>
+                    <option value="hi-IN">🇮🇳 Hindi</option>
+                </select>
+                <button onclick="speakText()">🔊 Speak Now</button>
+            </div>
+
+            <!-- Tool 8: Image Compressor -->
+            <div class="tool-card">
+                <div class="tool-icon">🗜️</div>
+                <h2>Image Compressor</h2>
+                <p>Reduce image size without losing quality - save storage</p>
+                <input type="file" id="imageInput" accept="image/*">
+                <button onclick="compressImage()">📦 Compress Image</button>
+                <div id="imageResult" class="result" style="display:none;"></div>
+            </div>
+        </div>
+
+        <div class="ad-space">
+            📢 Support Free Tools - Ads help keep this service running<br>
+            <span style="font-size: 12px;">Thank you for visiting!</span>
+        </div>
+
+        <div class="footer">
+            © 2026 FREE Utility Hub | All Tools are 100% Free | No Data Stored
+        </div>
+    </div>
+
+    <script>
+        function downloadInstagram() {
+            let url = document.getElementById('instaUrl').value;
+            if(url.includes('instagram.com')) {
+                let resultDiv = document.getElementById('instaResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <p>✅ <strong>Use this free service:</strong></p>
+                    <a href="https://saveinsta.app/en" target="_blank" style="display:inline-block; background:#667eea; padding:10px 20px; border-radius:12px; margin:10px 0;">🔗 Open SaveInsta</a>
+                    <p style="font-size:12px">Paste the URL there and download instantly</p>
+                `;
+            } else { alert('❌ Please enter a valid Instagram URL!'); }
+        }
+
+        function convertToMP3() {
+            let url = document.getElementById('ytmp3Url').value;
+            if(url.includes('youtube.com') || url.includes('youtu.be')) {
+                let resultDiv = document.getElementById('mp3Result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <p>✅ <strong>Use this free converter:</strong></p>
+                    <a href="https://ytmp3.cc" target="_blank" style="display:inline-block; background:#667eea; padding:10px 20px; border-radius:12px; margin:10px 0;">🎵 Open YTMP3</a>
+                    <p style="font-size:12px">Paste URL, convert and download MP3</p>
+                `;
+            } else { alert('❌ Please enter a valid YouTube URL!'); }
+        }
+
+        function removeBackground() {
+            let file = document.getElementById('bgImage').files[0];
+            if(file) {
+                let resultDiv = document.getElementById('bgResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <p>✅ <strong>Use this free tool:</strong></p>
+                    <a href="https://www.remove.bg/upload" target="_blank" style="display:inline-block; background:#667eea; padding:10px 20px; border-radius:12px; margin:10px 0;">🖼️ Open Remove.bg</a>
+                    <p style="font-size:12px">Upload image, background removed automatically</p>
+                `;
+            } else { alert('❌ Please select an image first!'); }
+        }
+
+        function convertPDFtoJPG() {
+            let file = document.getElementById('pdfFile').files[0];
+            if(file) {
+                let resultDiv = document.getElementById('pdfResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <p>✅ <strong>Use this free converter:</strong></p>
+                    <a href="https://www.ilovepdf.com/pdf_to_jpg" target="_blank" style="display:inline-block; background:#667eea; padding:10px 20px; border-radius:12px; margin:10px 0;">📄 Open iLovePDF</a>
+                    <p style="font-size:12px">Upload PDF, convert to JPG for free</p>
+                `;
+            } else { alert('❌ Please select a PDF file first!'); }
+        }
+
+        function downloadThumbnail() {
+            let url = document.getElementById('youtubeUrl').value;
+            let videoId = '';
+            let patterns = [/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/, /youtube\.com\/embed\/([^?]+)/];
+            for(let pattern of patterns) {
+                let match = url.match(pattern);
+                if(match) { videoId = match[1]; break; }
+            }
+            if(videoId) {
+                let thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                let resultDiv = document.getElementById('thumbnailResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<img src="${thumbnailUrl}" style="width:100%; border-radius:12px;"><br><a href="${thumbnailUrl}" download style="display:inline-block; background:#667eea; padding:10px 20px; border-radius:12px; margin-top:10px;">📥 Download Thumbnail</a>`;
+            } else { alert('❌ Invalid YouTube URL!'); }
+        }
+
+        function generateQR() {
+            let text = document.getElementById('qrText').value;
+            if(text) {
+                let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}`;
+                let resultDiv = document.getElementById('qrResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<img src="${qrUrl}" style="width:180px;"><br><p>✅ Scan this QR Code</p>`;
+            } else { alert('❌ Please enter text or URL!'); }
+        }
+
+        function speakText() {
+            let text = document.getElementById('ttsText').value;
+            let voiceLang = document.getElementById('voiceSelect').value;
+            if(text) {
+                let utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = voiceLang;
+                speechSynthesis.speak(utterance);
+            } else { alert('❌ Please type something to speak!'); }
+        }
+
+        function compressImage() {
+            let file = document.getElementById('imageInput').files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = new Image();
+                    img.onload = function() {
+                        let canvas = document.createElement('canvas');
+                        let ctx = canvas.getContext('2d');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0);
+                        let compressedDataUrl = canvas.toDataURL('image/jpeg', 0.5);
+                        let resultDiv = document.getElementById('imageResult');
+                        resultDiv.style.display = 'block';
+                        resultDiv.innerHTML = `<img src="${compressedDataUrl}" style="max-width:100%; border-radius:12px;"><br><a href="${compressedDataUrl}" download="compressed.jpg" style="display:inline-block; background:#667eea; padding:10px 20px; border-radius:12px; margin-top:10px;">📥 Download Compressed Image</a><p style="font-size:12px">✅ Image size reduced by ~50%</p>`;
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else { alert('❌ Please select an image!'); }
+        }
+    </script>
+</body>
+</html>
