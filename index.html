@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Video Toolkit - Download, Convert, Transcribe | Free Tools</title>
+    <meta name="description" content="Download videos from Instagram, TikTok, Facebook without watermark. Convert video to MP3. Transcribe video to text. Compress, trim, resize videos. Free all-in-one tool.">
+    
+    <!-- Aapke Adsterra Codes (Sirf Side Ads - No Video/Popunder) -->
+    <script>
+        atOptions = {'key' : '52e36eab192f244880065ee7a4c82617','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};
+    </script>
+    <script src="https://www.highperformanceformat.com/52e36eab192f244880065ee7a4c82617/invoke.js"></script>
+    
+    <script>
+        atOptions = {'key' : 'a291192b31a016b9af254b00225b5c9a','format' : 'iframe','height' : 600,'width' : 160,'params' : {}};
+    </script>
+    <script src="https://www.highperformanceformat.com/a291192b31a016b9af254b00225b5c9a/invoke.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+        }
+
+        /* Dark/Light Mode */
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+        }
+
+        .header {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .mode-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 2rem;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            opacity: 0.8;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 3;
+            min-width: 280px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-ad {
+            background: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar-ad p {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tool Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            padding: 0.8rem;
+            border-radius: 1rem;
+        }
+
+        .tab-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 2rem;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: #1a1a2e;
+        }
+
+        /* Tool Panels */
+        .tool-panel {
+            display: none;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-panel.active {
+            display: block;
+        }
+
+        .tool-panel h2 {
+            margin-bottom: 0.5rem;
+            color: #feca57;
+        }
+
+        .tool-panel p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Input Area */
+        .input-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-area input, .input-area select {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            border: none;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .upload-area {
+            border: 2px dashed #feca57;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 2rem;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .result-box textarea {
+            width: 100%;
+            height: 100px;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: none;
+        }
+
+        .preview {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .preview img, .preview video {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 0.5rem;
+        }
+
+        .quality-slider {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.5);
+            margin-top: 2rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: 2;
+            }
+            .content {
+                order: 1;
+            }
+            .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="nav">
+            <div class="logo">🎬 <span>Video Toolkit</span> | 10-in-1 Free Tools</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Tools</a>
+                <a href="#">Contact</a>
+                <button class="mode-toggle" onclick="toggleMode()">☀️ Light</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>🎥 All-in-One Video Toolkit 🎬</h1>
+        <p>Download, Compress, Trim, Convert, Transcribe — 100% Free</p>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tab1">📥 Video Downloader</button>
+                <button class="tab-btn" data-tab="tab2">🎵 Video to MP3</button>
+                <button class="tab-btn" data-tab="tab3">🗜️ Compressor</button>
+                <button class="tab-btn" data-tab="tab4">✂️ Trimmer</button>
+                <button class="tab-btn" data-tab="tab5">🎞️ Video to GIF</button>
+                <button class="tab-btn" data-tab="tab6">📏 Resizer</button>
+                <button class="tab-btn" data-tab="tab7">🎤 Audio to Text</button>
+                <button class="tab-btn" data-tab="tab8">📸 Thumbnail</button>
+                <button class="tab-btn" data-tab="tab9">📝 Caption Gen</button>
+                <button class="tab-btn" data-tab="tab10">💧 No Watermark</button>
+            </div>
+
+            <!-- Tab 1: Video Downloader -->
+            <div class="tool-panel active" id="tab1">
+                <h2>📥 Video Downloader</h2>
+                <p>Download videos from Instagram, TikTok, Facebook, YouTube</p>
+                <div class="input-area">
+                    <input type="text" id="videoUrl" placeholder="Paste video URL here...">
+                    <select id="quality">
+                        <option value="best">Best Quality</option>
+                        <option value="1080p">1080p</option>
+                        <option value="720p">720p</option>
+                        <option value="480p">480p</option>
+                    </select>
+                    <button onclick="downloadVideo()">⬇️ Download</button>
+                </div>
+                <div class="result-box" id="downloadResult">
+                    <p>⚠️ Note: Due to API limitations, this is a demo. For actual downloads, use backend service like yt-dlp API.</p>
+                </div>
+            </div>
+
+            <!-- Tab 2: Video to MP3 -->
+            <div class="tool-panel" id="tab2">
+                <h2>🎵 Video to MP3 Converter</h2>
+                <p>Extract audio from any video file</p>
+                <div class="upload-area" onclick="document.getElementById('mp3Video').click()">
+                    📁 Click to upload video (MP4, MOV, AVI)
+                    <input type="file" id="mp3Video" accept="video/*" style="display:none">
+                </div>
+                <button onclick="convertToMP3()">🎵 Convert to MP3</button>
+                <div class="result-box" id="mp3Result">
+                    <audio id="audioPreview" controls style="width:100%"></audio>
+                    <button onclick="downloadAudio()">⬇️ Download MP3</button>
+                </div>
+            </div>
+
+            <!-- Tab 3: Video Compressor -->
+            <div class="tool-panel" id="tab3">
+                <h2>🗜️ Video Compressor</h2>
+                <p>Reduce video file size without losing quality</p>
+                <div class="upload-area" onclick="document.getElementById('compressVideo').click()">
+                    📁 Click to upload video
+                    <input type="file" id="compressVideo" accept="video/*" style="display:none">
+                </div>
+                <label>Compression Level: <span id="compressValue">50</span>%</label>
+                <input type="range" id="compressSlider" class="quality-slider" min="10" max="90" value="50">
+                <button onclick="compressVideo()">🗜️ Compress</button>
+                <div class="result-box" id="compressResult">
+                    <video id="compressedVideo" controls style="width:100%"></video>
+                    <button onclick="downloadCompressed()">⬇️ Download</button>
+                </div>
+            </div>
+
+            <!-- Tab 4: Video Trimmer -->
+            <div class="tool-panel" id="tab4">
+                <h2>✂️ Video Trimmer/Cutter</h2>
+                <p>Cut any part of your video</p>
+                <div class="upload-area" onclick="document.getElementById('trimVideo').click()">
+                    📁 Click to upload video
+                    <input type="file" id="trimVideo" accept="video/*" style="display:none">
+                </div>
+                <div class="input-area">
+                    <input type="text" id="startTime" placeholder="Start time (e.g., 00:00:05)">
+                    <input type="text" id="endTime" placeholder="End time (e.g., 00:00:15)">
+                </div>
+                <button onclick="trimVideo()">✂️ Trim Video</button>
+                <div class="result-box" id="trimResult">
+                    <video id="trimmedVideo" controls style="width:100%"></video>
+                    <button onclick="downloadTrimmed()">⬇️ Download</button>
+                </div>
+            </div>
+
+            <!-- Tab 5: Video to GIF -->
+            <div class="tool-panel" id="tab5">
+                <h2>🎞️ Video to GIF Converter</h2>
+                <p>Create animated GIF from video</p>
+                <div class="upload-area" onclick="document.getElementById('gifVideo').click()">
+                    📁 Click to upload video
+                    <input type="file" id="gifVideo" accept="video/*" style="display:none">
+                </div>
+                <button onclick="convertToGIF()">🎞️ Create GIF</button>
+                <div class="result-box" id="gifResult">
+                    <img id="gifPreview" style="max-width:100%">
+                    <button onclick="downloadGIF()">⬇️ Download GIF</button>
+                </div>
+            </div>
+
+            <!-- Tab 6: Video Resizer -->
+            <div class="tool-panel" id="tab6">
+                <h2>📏 Video Resizer</h2>
+                <p>Change video resolution (1080p, 720p, 480p)</p>
+                <div class="upload-area" onclick="document.getElementById('resizeVideo').click()">
+                    📁 Click to upload video
+                    <input type="file" id="resizeVideo" accept="video/*" style="display:none">
+                </div>
+                <select id="resolution">
+                    <option value="1920x1080">1080p (1920x1080)</option>
+                    <option value="1280x720">720p (1280x720)</option>
+                    <option value="854x480">480p (854x480)</option>
+                    <option value="640x360">360p (640x360)</option>
+                </select>
+                <button onclick="resizeVideo()">📏 Resize</button>
+                <div class="result-box" id="resizeResult">
+                    <video id="resizedVideo" controls style="width:100%"></video>
+                    <button onclick="downloadResized()">⬇️ Download</button>
+                </div>
+            </div>
+
+            <!-- Tab 7: Audio to Text -->
+            <div class="tool-panel" id="tab7">
+                <h2>🎤 Audio to Text (Transcription)</h2>
+                <p>Convert audio/video speech to text</p>
+                <div class="upload-area" onclick="document.getElementById('transcribeAudio').click()">
+                    📁 Click to upload audio/video
+                    <input type="file" id="transcribeAudio" accept="audio/*,video/*" style="display:none">
+                </div>
+                <button onclick="transcribeAudio()">🎤 Transcribe</button>
+                <div class="result-box" id="transcribeResult">
+                    <textarea id="transcribedText" placeholder="Transcribed text will appear here..."></textarea>
+                    <button onclick="copyTranscript()">📋 Copy Text</button>
+                    <button onclick="downloadTranscript()">⬇️ Download TXT</button>
+                </div>
+            </div>
+
+            <!-- Tab 8: YouTube Thumbnail Downloader -->
+            <div class="tool-panel" id="tab8">
+                <h2>📸 YouTube Thumbnail Downloader</h2>
+                <p>Download any YouTube video thumbnail in HD</p>
+                <div class="input-area">
+                    <input type="text" id="thumbnailUrl" placeholder="Paste YouTube URL...">
+                </div>
+                <button onclick="getThumbnail()">📸 Get Thumbnail</button>
+                <div class="result-box" id="thumbnailResult">
+                    <img id="thumbnailImage" style="max-width:100%">
+                    <button onclick="downloadThumbnail()">⬇️ Download Thumbnail</button>
+                </div>
+            </div>
+
+            <!-- Tab 9: Caption Generator -->
+            <div class="tool-panel" id="tab9">
+                <h2>📝 Auto Caption Generator</h2>
+                <p>Generate SRT captions for your videos</p>
+                <div class="upload-area" onclick="document.getElementById('captionVideo').click()">
+                    📁 Click to upload video
+                    <input type="file" id="captionVideo" accept="video/*" style="display:none">
+                </div>
+                <button onclick="generateCaptions()">📝 Generate SRT</button>
+                <div class="result-box" id="captionResult">
+                    <textarea id="srtText" placeholder="SRT captions will appear here..."></textarea>
+                    <button onclick="downloadSRT()">⬇️ Download SRT</button>
+                </div>
+            </div>
+
+            <!-- Tab 10: Without Watermark -->
+            <div class="tool-panel" id="tab10">
+                <h2>💧 No Watermark Downloader</h2>
+                <p>Download Instagram/TikTok videos without watermark</p>
+                <div class="input-area">
+                    <input type="text" id="noWatermarkUrl" placeholder="Paste Instagram/TikTok URL...">
+                </div>
+                <button onclick="downloadNoWatermark()">💧 Download without Watermark</button>
+                <div class="result-box" id="noWatermarkResult">
+                    <p>⚠️ Demo mode. Actual API required for real downloads.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Ads -->
+        <div class="sidebar">
+            <div class="sidebar-ad">
+                <p>Advertisement</p>
+                <script>
+                    atOptions = {'key' : '52e36eab192f244880065ee7a4c82617','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};
+                </script>
+                <script src="https://www.highperformanceformat.com/52e36eab192f244880065ee7a4c82617/invoke.js"></script>
+            </div>
+            <div class="sidebar-ad">
+                <p>Advertisement</p>
+                <script>
+                    atOptions = {'key' : 'a291192b31a016b9af254b00225b5c9a','format' : 'iframe','height' : 600,'width' : 160,'params' : {}};
+                </script>
+                <script src="https://www.highperformanceformat.com/a291192b31a016b9af254b00225b5c9a/invoke.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Video Toolkit | 10-in-1 Free Video Tools</p>
+        <p style="font-size: 0.7rem;">⚠️ For demo/educational purposes. Real functionality requires backend APIs.</p>
+    </footer>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.tool-panel').forEach(panel => panel.classList.remove('active'));
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Dark/Light Mode
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Tab 1: Video Downloader
+        function downloadVideo() {
+            const url = document.getElementById('videoUr
