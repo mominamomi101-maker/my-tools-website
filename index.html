@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Video Downloader - YouTube, TikTok, Instagram | Free</title>
+    <meta name="description" content="Download videos from YouTube, TikTok, Instagram. Remove watermark, adjust speed, choose quality. Free online tool.">
+    
+    <!-- Aapke Adsterra Ads -->
+    <script>
+        atOptions = {'key' : '52e36eab192f244880065ee7a4c82617','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};
+    </script>
+    <script src="https://www.highperformanceformat.com/52e36eab192f244880065ee7a4c82617/invoke.js"></script>
+    
+    <script>
+        atOptions = {'key' : 'a291192b31a016b9af254b00225b5c9a','format' : 'iframe','height' : 600,'width' : 160,'params' : {}};
+    </script>
+    <script src="https://www.highperformanceformat.com/a291192b31a016b9af254b00225b5c9a/invoke.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffdde1 100%);
+            min-height: 100vh;
+        }
+
+        .main-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            flex: 3;
+            min-width: 280px;
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-ad {
+            background: rgba(255,255,255,0.3);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-ad p {
+            font-size: 0.7rem;
+            color: #c2185b;
+            margin-bottom: 0.5rem;
+        }
+
+        .header {
+            background: rgba(255,182,193,0.6);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #c2185b;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #c2185b;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .url-box {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #f06292;
+            font-size: 1rem;
+            background: white;
+            margin-bottom: 1rem;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #e91e63;
+        }
+
+        .platform-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .platform-btn {
+            background: rgba(255,255,255,0.7);
+            border: 2px solid #f06292;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            color: #c2185b;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .platform-btn:hover {
+            background: #f06292;
+            color: white;
+        }
+
+        .platform-btn.active {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: white;
+            border-color: transparent;
+        }
+
+        .quality-selector {
+            margin-bottom: 1rem;
+        }
+
+        .quality-selector select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            border: 2px solid #f06292;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .speed-control {
+            margin-bottom: 1rem;
+        }
+
+        .speed-control label {
+            color: #c2185b;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .speed-slider {
+            width: 100%;
+            margin: 0.5rem 0;
+            accent-color: #e91e63;
+        }
+
+        .speed-value {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .watermark-option {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .watermark-option label {
+            color: #c2185b;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .watermark-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: #e91e63;
+        }
+
+        .download-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .video-preview {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .video-preview video {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 0.5rem;
+        }
+
+        .result-info {
+            text-align: center;
+        }
+
+        .final-download-btn {
+            background: #4CAF50;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(233,30,99,0.3);
+            border-top: 4px solid #e91e63;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-msg {
+            background: rgba(233,30,99,0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            color: #c2185b;
+            text-align: center;
+            display: none;
+            margin-top: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #c2185b;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.5rem; }
+            .main-wrapper { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="nav">
+            <div class="logo">🎬 <span>Pink Video Downloader</span> 💕</div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>📥 Download Any Video Free 💗</h1>
+        <p>YouTube, TikTok, Instagram — No Watermark, Adjust Speed, Choose Quality</p>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="content">
+            <div class="url-box">
+                <input type="text" class="url-input" id="videoUrl" placeholder="Paste video URL here... (YouTube, TikTok, or Instagram)">
+                
+                <div class="platform-selector">
+                    <button class="platform-btn" data-platform="youtube">▶️ YouTube</button>
+                    <button class="platform-btn" data-platform="tiktok">🎵 TikTok</button>
+                    <button class="platform-btn" data-platform="instagram">📸 Instagram</button>
+                </div>
+
+                <div class="quality-selector">
+                    <select id="quality">
+                        <option value="best">Best Quality</option>
+                        <option value="1080p">1080p (Full HD)</option>
+                        <option value="720p">720p (HD)</option>
+                        <option value="480p">480p (SD)</option>
+                    </select>
+                </div>
+
+                <div class="speed-control">
+                    <label>🎚️ Playback Speed: <span class="speed-value" id="speedValue">1.0x</span></label>
+                    <input type="range" id="speedSlider" class="speed-slider" min="0.25" max="3" step="0.05" value="1.0">
+                </div>
+
+                <div class="watermark-option">
+                    <input type="checkbox" id="removeWatermark">
+                    <label for="removeWatermark">💧 Remove Watermark (TikTok/Instagram)</label>
+                </div>
+
+                <button class="download-btn" id="processBtn">🚀 Process & Download</button>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing video... Please wait 💕</p>
+                </div>
+
+                <div class="error-msg" id="errorMsg"></div>
+
+                <div class="result-box" id="resultBox">
+                    <div class="video-preview">
+                        <video id="videoPreview" controls></video>
+                    </div>
+                    <div class="result-info">
+                        <p>✅ Video ready! Click below to save.</p>
+                        <button class="final-download-btn" id="finalDownloadBtn">💾 Save Video</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-ad">
+                <p>Advertisement</p>
+                <script>
+                    atOptions = {'key' : '52e36eab192f244880065ee7a4c82617','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};
+                </script>
+                <script src="https://www.highperformanceformat.com/52e36eab192f244880065ee7a4c82617/invoke.js"></script>
+            </div>
+            <div class="sidebar-ad">
+                <p>Advertisement</p>
+                <script>
+                    atOptions = {'key' : 'a291192b31a016b9af254b00225b5c9a','format' : 'iframe','height' : 600,'width' : 160,'params' : {}};
+                </script>
+                <script src="https://www.highperformanceformat.com/a291192b31a016b9af254b00225b5c9a/invoke.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>💗 © 2024 Pink Video Downloader | Free tool for personal use 💗</p>
+    </footer>
+
+    <script>
+        const urlInput = document.getElementById('videoUrl');
+        const processBtn = document.getElementById('processBtn');
+        const loadingDiv = document.getElementById('loading');
+        const errorMsg = document.getElementById('errorMsg');
+        const resultBox = document.getElementById('resultBox');
+        const videoPreview = document.getElementById('videoPreview');
+        const finalDownloadBtn = document.getElementById('finalDownloadBtn');
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+        const removeWatermark = document.getElementById('removeWatermark');
+        const qualitySelect = document.getElementById('quality');
+
+        let currentPlatform = 'youtube';
+        let currentVideoBlob = null;
+
+        // Platform selection
+        document.querySelectorAll('.platform-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPlatform = btn.dataset.platform;
+            });
+        });
+
+        // Speed slider
+        speedSlider.addEventListener('input', () => {
+            const speed = parseFloat(speedSlider.value);
+            speedValue.textContent = speed.toFixed(2) + 'x';
+            if (videoPreview) videoPreview.playbackRate = speed;
+        });
+
+        // Process video using API
+        processBtn.addEventListener('click', async () => {
+            const url = urlInput.value.trim();
+            if (!url) {
+                showError('Please enter a video URL 💕');
+                return;
+            }
+
+            showLoading();
+            hideError();
+
+            try {
+                let apiUrl = '';
+                let watermark = removeWatermark.checked ? 'yes' : 'no';
+                
+                if (currentPlatform === 'youtube') {
+                    apiUrl = `https://ytdlapi.com/api?url=${encodeURIComponent(url)}&quality=${qualitySelect.value}`;
+                } else if (currentPlatform === 'tiktok') {
+                    apiUrl = `https://tiktokdl.com/api?url=${encodeURIComponent(url)}&watermark=${watermark}`;
+                } else if (currentPlatform === 'instagram') {
+                    apiUrl = `https://instaapi.com/api?url=${encodeURIComponent(url)}`;
+                }
+
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.success && data.video_url) {
+                    const videoResponse = await fetch(data.video_url);
+                    currentVideoBlob = await videoResponse.blob();
+                    const videoUrl = URL.createObjectURL(currentVideoBlob);
+                    
+                    videoPreview.src = videoUrl;
+                    hideLoading();
+                    resultBox.style.display = 'block';
+                } else {
+                    throw new Error('Failed to fetch video');
+                }
+            } catch (error) {
+                hideLoading();
+                showError('Failed to process. Please try again or use another URL. 💕');
+                console.error(error);
+            }
+        });
+
+        finalDownloadBtn.addEventListener('click', () => {
+            if (currentVideoBlob) {
+                const url = URL.createObjectURL(currentVideoBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `video_${currentPlatform}_${qualitySelect.value}.mp4`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        });
+
+        function showLoading() {
+            loadingDiv.style.display = 'block';
+            processBtn.disabled = true;
+        }
+
+        function hideLoading() {
+            loadingDiv.style.display = 'none';
+            processBtn.disabled = false;
+        }
+
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.style.display = 'block';
+            setTimeout(() => errorMsg.style.display = 'none', 5000);
+        }
+
+        function hideError() {
+            errorMsg.style.display = 'none';
+        }
+    </script>
+</body>
+  </html>
