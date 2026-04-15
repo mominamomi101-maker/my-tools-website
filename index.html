@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Cloning - Clone Any Voice in 3 Seconds | Free Tool</title>
+    <meta name="description" content="Clone any voice with just 3 seconds of audio. Free AI voice cloning tool - realistic, fast, and easy to use.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🎤</span>
+                <span class="logo-text">VoiceClone AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <button class="btn-login">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Clone Any Voice in <span class="highlight">3 Seconds</span></h1>
+            <p class="hero-subtitle">The fastest, most accurate AI voice cloning technology. Experience premium quality with just 3 seconds of audio!</p>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToTool()">🎤 Try It Free</button>
+                <button class="btn-secondary">📹 Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Tool Section -->
+    <section id="tool" class="tool-section">
+        <div class="container">
+            <h2>Create Your Voice Clone</h2>
+            <p class="section-subtitle">Upload a 3-second audio sample and type any text to generate speech</p>
+
+            <div class="tool-container">
+                <!-- Left Panel - Audio Upload -->
+                <div class="tool-panel">
+                    <h3>Step 1: Upload Voice Sample</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">🎵</div>
+                        <p>Click or drag audio file here</p>
+                        <p class="upload-hint">MP3, WAV, M4A (3-10 seconds, clear voice)</p>
+                        <input type="file" id="audioFile" accept="audio/*" hidden>
+                        <button class="btn-upload" onclick="document.getElementById('audioFile').click()">Choose File</button>
+                    </div>
+                    <div id="audioPreview" style="display:none;">
+                        <audio controls id="audioPlayer"></audio>
+                        <button class="btn-remove" onclick="removeAudio()">Remove</button>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Text Input -->
+                <div class="tool-panel">
+                    <h3>Step 2: Enter Text</h3>
+                    <textarea id="textInput" placeholder="Type something for the voice to say... (max 500 characters)" maxlength="500"></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span> / 500 characters
+                    </div>
+                    
+                    <h3 style="margin-top: 20px;">Step 3: Generate</h3>
+                    <button class="btn-generate" id="generateBtn" onclick="generateSpeech()">
+                        🎙️ Generate Voice
+                    </button>
+                    
+                    <div id="loading" style="display:none;">
+                        <div class="spinner"></div>
+                        <p>Generating your voice clone...</p>
+                    </div>
+                    
+                    <div id="result" style="display:none;">
+                        <h3>Your Generated Audio:</h3>
+                        <audio controls id="resultAudio"></audio>
+                        <button class="btn-download" onclick="downloadAudio()">📥 Download MP3</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why Choose VoiceClone AI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>3-Second Cloning</h3>
+                    <p>Just 3 seconds of audio needed - fastest in the industry</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Hyper-Realistic</h3>
+                    <p>Captures every nuance and emotion of the original voice</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multi-Language</h3>
+                    <p>Supports English, Chinese, Japanese, Korean, and more</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Your audio data is handled securely and never shared</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p>Forever free</p>
+                    <ul>
+                        <li>✓ 900 seconds/month</li>
+                        <li>✓ 5 voice clone models</li>
+                        <li>✓ Basic quality</li>
+                        <li>✗ Commercial use</li>
+                    </ul>
+                    <button class="btn-price" onclick="scrollToTool()">Get Started</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$14.99</div>
+                    <p>per month</p>
+                    <ul>
+                        <li>✓ Unlimited generations</li>
+                        <li>✓ Unlimited voice models</li>
+                        <li>✓ HD quality</li>
+                        <li>✓ Commercial use allowed</li>
+                        <li>✓ Priority generation</li>
+                    </ul>
+                    <button class="btn-price" onclick="alert('Payment integration would go here')">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How do I get started?</h3>
+                    <p>Upload a 3-second clear audio sample, type your text, and click generate. It's that simple!</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I use voices commercially?</h3>
+                    <p>Yes, with our Pro plan. Free users can only use for personal projects.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What languages are supported?</h3>
+                    <p>English, Chinese (Mandarin), Japanese, Korean, and more coming soon.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a usage limit?</h3>
+                    <p>Free users get 900 seconds per month. Pro users have unlimited access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 VoiceClone AI. All rights reserved.</p>
+            <p>Please obtain consent before cloning someone's voice.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
