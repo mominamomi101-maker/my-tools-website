@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>✨ Mega Tools Hub - 20+ Free Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fff, #a8b5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .subtitle span {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        /* Search Bar */
+        .search-box {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 16px;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tool-card p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 15px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            background: rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 8px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            text-align: center;
+            word-break: break-all;
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .category {
+            margin: 30px 0 15px;
+            padding-left: 10px;
+            font-size: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.6;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Mega Tools Hub</h1>
+            <div class="subtitle">
+                <span>⚡ 25+ Tools</span>
+                <span>🎯 100% Free</span>
+                <span>📱 Mobile Ready</span>
+                <span>🔒 No Signup</span>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search tools... (e.g., QR, Password, Calculator)">
+        </div>
+
+        <!-- Category: Media & Download -->
+        <div class="category">📥 Media & Download</div>
+        <div class="tools-grid" id="mediaTools"></div>
+
+        <!-- Category: Text & Conversion -->
+        <div class="category">📝 Text & Conversion</div>
+        <div class="tools-grid" id="textTools"></div>
+
+        <!-- Category: Developer & Utility -->
+        <div class="category">🛠️ Developer & Utility</div>
+        <div class="tools-grid" id="utilityTools"></div>
+
+        <!-- Category: Image Tools -->
+        <div class="category">🖼️ Image Tools</div>
+        <div class="tools-grid" id="imageTools"></div>
+
+        <div class="footer">
+            © 2026 Mega Tools Hub | All Tools 100% Free | No Data Stored
+        </div>
+    </div>
+
+    <script>
+        // Tool definitions
+        const tools = [
+            // Media Tools
+            { id: "ytThumb", name: "🎬 YouTube Thumbnail", category: "media", desc: "Download HD thumbnails from any video", html: `<input type="text" id="ytUrl" placeholder="YouTube URL..."><button onclick="getThumbnail()">Get Thumbnail</button><div id="thumbResult" class="result" style="display:none"></div>` },
+            { id: "qrGen", name: "📱 QR Code Generator", category: "media", desc: "Create QR codes for any text/link", html: `<input type="text" id="qrText" placeholder="Enter text or URL..."><button onclick="generateQR()">Generate QR</button><div id="qrResult" class="result" style="display:none"></div>` },
+            
+            // Text Tools
+            { id: "wordCount", name: "📊 Word Counter", category: "text", desc: "Count words, characters, sentences", html: `<textarea id="wordText" rows="3" placeholder="Type or paste text here..."></textarea><button onclick="countWords()">Count</button><div id="wordResult" class="result" style="display:none"></div>` },
+            { id: "caseConvert", name: "🔠 Text Case Converter", category: "text", desc: "Convert text to uppercase/lowercase", html: `<textarea id="caseText" rows="2" placeholder="Enter text..."></textarea><div style="display:flex;gap:8px"><button onclick="toUpper()">UPPERCASE</button><button onclick="toLower()">lowercase</button><button onclick="toTitle()">Title Case</button></div><div id="caseResult" class="result" style="display:none"></div>` },
+            { id: "textReverse", name: "🔄 Text Reverser", category: "text", desc: "Reverse any text or string", html: `<input type="text" id="reverseText" placeholder="Enter text..."><button onclick="reverseString()">Reverse</button><div id="reverseResult" class="result" style="display:none"></div>` },
+            { id: "removeSpaces", name: "🧹 Remove Spaces", category: "text", desc: "Remove extra spaces from text", html: `<textarea id="spaceText" rows="2" placeholder="Enter text with spaces..."></textarea><button onclick="removeSpaces()">Remove Spaces</button><div id="spaceResult" class="result" style="display:none"></div>` },
+            
+            // Utility Tools
+            { id: "password", name: "🔐 Password Generator", category: "utility", desc: "Generate strong random passwords", html: `<div style="display:flex;gap:10px"><input type="number" id="passLen" value="12" min="4" max="32"><button onclick="generatePassword()">Generate</button></div><div id="passResult" class="result" style="display:none"></div>` },
+            { id: "randomNum", name: "🎲 Random Number", category: "utility", desc: "Generate random numbers", html: `<div style="display:flex;gap:10px"><input type="number" id="minNum" placeholder="Min" value="1"><input type="number" id="maxNum" placeholder="Max" value="100"></div><button onclick="randomNumber()">Generate</button><div id="randomResult" class="result" style="display:none"></div>` },
+            { id: "base64", name: "🔢 Base64 Encoder/Decoder", category: "utility", desc: "Encode or decode Base64", html: `<textarea id="base64Text" rows="2" placeholder="Enter text..."></textarea><div style="display:flex;gap:8px"><button onclick="encodeBase64()">Encode</button><button onclick="decodeBase64()">Decode</button></div><div id="base64Result" class="result" style="display:none"></div>` },
+            { id: "colorPicker", name: "🎨 Color Picker", category: "utility", desc: "Pick colors and get HEX/RGB", html: `<input type="color" id="colorPick" value="#667eea"><button onclick="showColor()">Get Color Code</button><div id="colorResult" class="result" style="display:none"></div>` },
+            { id: "ageCalc", name: "📅 Age Calculator", category: "utility", desc: "Calculate age from birthdate", html: `<input type="date" id="birthDate"><button onclick="calculateAge()">Calculate Age</button><div id="ageResult" class="result" style="display:none"></div>` },
+            
+            // Image Tools
+            { id: "imgCompress", name: "🗜️ Image Compressor", category: "image", desc: "Compress images to reduce size", html: `<input type="file" id="compressImg" accept="image/*"><button onclick="compressImage()">Compress</button><div id="compressResult" class="result" style="display:none"></div>` },
+            { id: "imgToBase64", name: "🖼️ Image to Base64", category: "image", desc: "Convert image to Base64 string", html: `<input type="file" id="base64Img" accept="image/*"><button onclick="imageToBase64()">Convert</button><div id="base64ImgResult" class="result" style="display:none"></div>` },
+            { id: "textToSpeech", name: "🔊 Text to Speech", category: "image", desc: "Convert text to natural voice", html: `<textarea id="speechText" rows="2" placeholder="Type text to speak..."></textarea><select id="voiceLang"><option value="en-US">English</option><option value="hi-IN">Hindi</option></select><button onclick="speakNow()">Speak</button>` },
+            
+            // Extra Tools
+            { id: "urlEncode", name: "🔗 URL Encoder/Decoder", category: "utility", desc: "Encode or decode URLs", html: `<textarea id="urlText" rows="2" placeholder="Enter URL or text..."></textarea><div style="display:flex;gap:8px"><button onclick="encodeURL()">Encode</button><button onclick="decodeURL()">Decode</button></div><div id="urlResult" class="result" style="display:none"></div>` },
+            { id: "jsonFormat", name: "📋 JSON Formatter", category: "utility", desc: "Format and validate JSON", html: `<textarea id="jsonText" rows="4" placeholder='{"name":"test"}'></textarea><button onclick="formatJSON()">Format JSON</button><div id="jsonResult" class="result" style="display:none"></div>` },
+            { id: "timer", name: "⏱️ Timer/Stopwatch", category: "utility", desc: "Simple countdown timer", html: `<input type="number" id="timerSec" placeholder="Seconds" value="60"><button onclick="startTimer()">Start Timer</button><div id="timerResult" class="result" style="display:none"></div>` },
+            { id: "unitConv", name: "📏 Unit Converter", category: "utility", desc: "Convert between units", html: `<input type="number" id="unitValue" placeholder="Value"><select id="unitFrom"><option value="km">KM</option><option value="mile">Miles</option><option value="kg">KG</option><option value="lb">Pounds</option></select><select id="unitTo"><option value="mile">Miles</option><option value="km">KM</option><option value="lb">Pounds</option><option value="kg">KG</option></select><button onclick="convertUnit()">Convert</button><div id="unitResult" class="result" style="display:none"></div>` }
+        ];
+
+        // Render tools by category
+        function renderTools() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            const mediaTools = tools.filter(t => t.category === 'media' && (searchTerm === '' || t.name.toLowerCase().includes(searchTerm)));
+            const textTools = tools.filter(t => t.category === 'text' && (searchTerm === '' || t.name.toLowerCase().includes(searchTerm)));
+            const utilityTools = tools.filter(t => t.category === 'utility' && (searchTerm === '' || t.name.toLowerCase().includes(searchTerm)));
+            const imageTools = tools.filter(t => t.category === 'image' && (searchTerm === '' || t.name.toLowerCase().includes(searchTerm)));
+            
+            document.getElementById('mediaTools').innerHTML = mediaTools.map(t => `<div class="tool-card"><div class="tool-icon">${t.name.split(' ')[0]}</div><h3>${t.name}</h3><p>${t.desc}</p>${t.html}</div>`).join('');
+            document.getElementById('textTools').innerHTML = textTools.map(t => `<div class="tool-card"><div class="tool-icon">${t.name.split(' ')[0]}</div><h3>${t.name}</h3><p>${t.desc}</p>${t.html}</div>`).join('');
+            document.getElementById('utilityTools').innerHTML = utilityTools.map(t => `<div class="tool-card"><div class="tool-icon">${t.name.split(' ')[0]}</div><h3>${t.name}</h3><p>${t.desc}</p>${t.html}</div>`).join('');
+            document.getElementById('imageTools').innerHTML = imageTools.map(t => `<div class="tool-card"><div class="tool-icon">${t.name.split(' ')[0]}</div><h3>${t.name}</h3><p>${t.desc}</p>${t.html}</div>`).join('');
+        }
+
+        // Tool Functions
+        function getThumbnail() {
+            let url = document.getElementById('ytUrl').value;
+            let videoId = '';
+            let match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
+            if(match) videoId = match[1];
+            if(videoId) {
+                let thumbUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                let resultDiv = document.getElementById('thumbResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<img src="${thumbUrl}"><br><a href="${thumbUrl}" download style="background:#28a745;padding:8px;display:inline-block;border-radius:8px;margin-top:8px;">📥 Download</a>`;
+            } else alert('Invalid YouTube URL');
+        }
+
+        function generateQR() {
+            let text = document.getElementById('qrText').value;
+            if(text) {
+                let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
+                document.getElementById('qrResult').style.display = 'block';
+                document.getElementById('qrResult').innerHTML = `<img src="${qrUrl}"><p>Scan this QR Code</p>`;
+            } else alert('Enter text or URL');
+        }
+
+        function countWords() {
+            let text = document.getElementById('wordText').value;
+            let words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+            let chars = text.length;
+            let sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            document.getElementById('wordResult').style.display = 'block';
+            document.getElementById('wordResult').innerHTML = `📝 Words: ${words}<br>🔤 Characters: ${chars}<br>📄 Sentences: ${sentences}`;
+        }
+
+        function toUpper() {
+            let text = document.getElementById('caseText').value;
+            document.getElementById('caseResult').style.display = 'block';
+            document.getElementById('caseResult').innerHTML = `<strong>UPPERCASE:</strong><br>${text.toUpperCase()}`;
+        }
+
+        function toLower() {
+            let text = document.getElementById('caseText').value;
+            document.getElementById('caseResult').style.display = 'block';
+            document.getElementById('caseResult').innerHTML = `<strong>lowercase:</strong><br>${text.toLowerCase()}`;
+        }
+
+        function toTitle() {
+            let text = document.getElementById('caseText').value;
+            let title = text.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            document.getElementById('caseResult').style.display = 'block';
+            document.getElementById('caseResult').innerHTML = `<strong>Title Case:</strong><br>${title}`;
+        }
+
+        function reverseString() {
+            let text = document.getElementById('reverseText').value;
+            let reversed = text.split('').reverse().join('');
+            document.getElementById('reverseResult').style.display = 'block';
+            document.getElementById('reverseResult').innerHTML = `🔄 Reversed: ${reversed}`;
+        }
+
+        function removeSpaces() {
+            let text = document.getElementById('spaceText').value;
+            let result = text.replace(/\s+/g, ' ').trim();
+            document.getElementById('spaceResult').style.display = 'block';
+            document.getElementById('spaceResult').innerHTML = `✨ Without extra spaces:<br>${result}`;
+        }
+
+        function generatePassword() {
+            let len = parseInt(document.getElementById('passLen').value);
+            let chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%';
+            let password = '';
+            for(let i = 0; i < len; i++) password += chars[Math.floor(Math.random() * chars.length)];
+            document.getElementById('passResult').style.display = 'block';
+            document.getElementById('passResult').innerHTML = `<span style="font-size:1.2rem;font-family:monospace">${password}</span><br><button onclick="copyToClipboard('${password}')" style="margin-top:8px;background:#28a745">📋 Copy</button>`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Copied!');
+        }
+
+        function randomNumber() {
+            let min = parseInt(document.getElementById('minNum').value);
+            let max = parseInt(document.getElementById('maxNum').value);
+            let num = Math.floor(Math.random() * (max - min + 1)) + min;
+            document.getElementById('randomResult').style.display = 'block';
+            document.getElementById('randomResult').innerHTML = `🎲 Random Number: <strong style="font-size:1.5rem">${num}</strong>`;
+        }
+
+        function encodeBase64() {
+            let text = document.getElementById('base64Text').value;
+            let encoded = btoa(text);
+            document.getElementById('base64Result').style.display = 'block';
+            document.getElementById('base64Result').innerHTML = `🔐 Encoded:<br><span style="word-break:break-all">${encoded}</span><button onclick="copyToClipboard('${encoded}')" style="margin-top:8px;background:#28a745">📋 Copy</button>`;
+        }
+
+        function decodeBase64() {
+            let text = document.getElementById('base64Text').value;
+            try {
+                let decoded = atob(text);
+                document.getElementById('base64Result').style.display = 'block';
+                document.getElementById('base64Result').innerHTML = `🔓 Decoded:<br>${decoded}`;
+            } catch(e) { alert('Invalid Base64'); }
+        }
+
+        function showColor() {
+            let color = document.getElementById('colorPick').value;
+            document.getElementById('colorResult').style.display = 'block';
+       
