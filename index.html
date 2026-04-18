@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnZone - 4 Ads Dekho aur Paise Kamao | EasyPaisa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .logo h1 {
+            color: #667eea;
+            font-size: 1.8rem;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .wallet {
+            background: linear-gradient(135deg, #10b981, #059669);
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .wallet h2 {
+            font-size: 1.8rem;
+        }
+
+        .withdraw-btn {
+            background: white;
+            color: #059669;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Daily Check-in */
+        .daily-checkin {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .checkin-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* 4 Ads Progress Section */
+        .ads-progress {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .progress-container {
+            background: #e5e7eb;
+            border-radius: 30px;
+            height: 30px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, #10b981, #059669);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .ad-box {
+            background: #f3f4f6;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .ad-box.completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .ad-box.completed i {
+            color: white;
+        }
+
+        .ad-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .ad-status {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .watch-ad-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .watch-ad-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .reward-info {
+            background: #fef3c7;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            color: #d97706;
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            margin: 30px 0;
+        }
+
+        .section-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .reward-amount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fef3c7;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: #d97706;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .payment-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #f3f4f6;
+            border-radius: 50px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .ad-video {
+            background: #1f2937;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .next-ad-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .ads-grid {
+                gap: 8px;
+            }
+            .ad-box {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <h1><i class="fas fa-ad"></i> EarnZone Pakistan</h1>
+                <p>4 Ads Dekho, Paise Kamao!</p>
+            </div>
+            <div class="wallet">
+                <p>Total Balance</p>
+                <h2 id="userBalance">₨ 0</h2>
+                <button class="withdraw-btn" onclick="openWithdrawModal()">
+                    <i class="fas fa-money-bill-wave"></i> Withdraw
+                </button>
+            </div>
+        </div>
+
+        <!-- Daily Check-in -->
+        <div class="daily-checkin">
+            <h3><i class="fas fa-calendar-check"></i> Daily Check-in</h3>
+            <p>Rozana check-in karo aur <strong>₨ 10</strong> kamao!</p>
+            <p>Current Streak: <strong id="streakCount">0</strong> days</p>
+            <button class="checkin-btn" onclick="dailyCheckin()">
+                <i class="fas fa-check-circle"></i> Aaj Check-in Karein
+            </button>
+        </div>
+
+        <!-- 4 Ads Progress Section -->
+        <div class="ads-progress" id="adsProgressSection" style="display: none;">
+            <h3><i class="fas fa-tv"></i> 4 Ads Dekho aur Paise Kamao!</h3>
+            <p id="toolNameDisplay"></p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">0/4</div>
+            </div>
+            
+            <div class="ads-grid">
+                <div class="ad-box" id="ad1">
+                    <div class="ad-number">📺 1</div>
+                    <div class="ad-status">Pending</div>
+                </div>
+                <div class="ad-box" id="ad2">
+                    <div class="ad-number">📺 2</div>
+                    <div class="ad-status">Pending</div>
+                </div>
+                <div class="ad-box" id="ad3">
+                    <div class="ad-number">📺 3</div>
+                    <div class="ad-status">Pending</div>
+                </div>
+                <div class="ad-box" id="ad4">
+                    <div class="ad-number">📺 4</div>
+                    <div class="ad-status">Pending</div>
+                </div>
+            </div>
+            
+            <button class="watch-ad-btn" id="watchAdBtn" onclick="startWatchingAds()">
+                <i class="fas fa-play"></i> Ad #1 Dekho
+            </button>
+            
+            <div class="reward-info" id="rewardInfo">
+                💰 4 ads complete karne par ₨ <span id="rewardAmount">0</span> milega!
+            </div>
+        </div>
+
+        <!-- Free Tools -->
+        <div class="tools-section">
+            <h2 class="section-title"><i class="fas fa-tools"></i> Free Tools Use Karo, 4 Ads Dekho, Paise Kamao!</h2>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="selectTool('PDF to Word', 30)">
+                    <div class="reward-amount">+₨ 30</div>
+                    <div class="tool-icon">📄</div>
+                    <h3>PDF to Word</h3>
+                    <p>Convert PDF to editable Word</p>
+                    <small style="color: #666;">4 ads dekhne honge</small>
+                </div>
+                <div class="tool-card" onclick="selectTool('Audio to Transcript', 50)">
+                    <div class="reward-amount">+₨ 50</div>
+                    <div class="tool-icon">🎙️</div>
+                    <h3>Audio to Transcript</h3>
+                    <p>Audio se text mein convert</p>
+                    <small style="color: #666;">4 ads dekhne honge</small>
+                </div>
+                <div class="tool-card" onclick="selectTool('Image Compressor', 20)">
+                    <div class="reward-amount">+₨ 20</div>
+                    <div class="tool-icon">🖼️</div>
+                    <h3>Image Compressor</h3>
+                    <p>Compress image size</p>
+                    <small style="color: #666;">4 ads dekhne honge</small>
+                </div>
+                <div class="tool-card" onclick="selectTool('Background Remover', 40)">
+                    <div class="reward-amount">+₨ 40</div>
+                    <div class="tool-icon">✨</div>
+                    <h3>Background Remover</h3>
+                    <p>Remove image background</p>
+                    <small style="color: #666;">4 ads dekhne honge</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-section">
+            <h3><i class="fas fa-hand-holding-usd"></i> Withdrawal Methods</h3>
+            <div class="payment-icons">
+                <div class="payment-icon"><i class="fas fa-mobile-alt"></i> EasyPaisa</div>
+                <div class="payment-icon"><i class="fas fa-university"></i> Bank Transfer</div>
+                <div class="payment-icon"><i class="fab fa-paypal"></i> Payoneer</div>
+                <div class="payment-icon"><i class="fas fa-rupee-sign"></i> JazzCash</div>
+            </div>
+            <p style="margin-top: 10px;">Minimum withdrawal: ₨ 200 | Instant transfer</p>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="payment-section">
+            <script>
+                atOptions = {
+                    'key' : '52e36eab192f244880065ee7a4c82617',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/52e36eab192f244880065ee7a4c82617/invoke.js"></script>
+        </div>
+    </div>
+
+    <!-- Ad Watching Modal -->
+    <div id="adModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-ad" style="font-size: 3rem; color: #f59e0b;"></i>
+            <h3 id="adModalTitle">Advertisement #1</h3>
+            <div class="ad-video">
+                <i class="fas fa-play-circle" style="font-size: 3rem; color: #667eea;"></i>
+                <p id="adTimer">5 seconds remaining...</p>
+            </div>
+            <button class="next-ad-btn" id="nextAdBtn" onclick="completeCurrentAd()" style="display: none;">
+                Next Ad →
+            </button>
+        </div>
+    </div>
+
+    <!-- Withdrawal Modal -->
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <h3>💰 Withdraw Money</h3>
+            <p>Your Balance: <strong id="modalBalance">₨ 0</strong></p>
+            <select id="withdrawMethod" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px;">
+                <option value="easypaisa">EasyPaisa</option>
+                <option value="bank">Bank Transfer</option>
+                <option value="payoneer">Payoneer</option>
+                <option value="jazzcash">JazzCash</option>
+            </select>
+            <input type="text" id="accountNo" placeholder="Account Number / Mobile Number" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px;">
+            <input type="number" id="withdrawAmount" placeholder="Amount (Min ₨ 200)" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px;">
+            <button onclick="processWithdraw()" style="background: #10b981; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; cursor: pointer;">Withdraw Now</button>
+            <button onclick="closeWithdrawModal()" style="margin-top: 10px; background: #ccc; border: none; padding: 10px; width: 100%; border-radius: 8px; cursor: pointer;">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // User Data
+        let userData = {
+            balance: localStorage.getItem('userBalance') ? parseInt(localStorage.getItem('userBalance')) : 0,
+            streak: localStorage.getItem('streak') ? parseInt(localStorage.getItem('streak')) : 0,
+            lastCheckin: localStorage.getItem('lastCheckin') || ''
+        };
+
+        let currentTool = null;
+        let currentReward = 0;
+        let currentAdIndex = 0;
+        let totalAds = 4;
+        let adTimer = null;
+
+        // Update Balance Display
+        function updateBalance() {
+            document.getElementById('userBalance').innerHTML = `₨ ${userData.balance}`;
+            localStorage.setItem('userBalance', userData.balance);
+        }
+
+        // Select Tool - Start 4 Ads Process
+        function selectTool(toolName, reward) {
+            currentTool = toolName;
+            currentReward = reward;
+            currentAdIndex = 0;
+            
+            document.getElementById('toolNameDisplay').innerHTML = `<strong>${toolName}</strong> - Earn ₨ ${reward}`;
+            document.getElementById('rewardAmount').innerHTML = reward;
+            document.getElementById('rewardInfo').innerHTML = `💰 4 ads complete karne par ₨ ${reward} milega!`;
+            
+            // Reset ad boxes
+            for (let i = 1; i <= 4; i++) {
+                const adBox = document.getElementById(`ad${i}`);
+                adBox.classList.remove('completed');
+                adBox.querySelector('.ad-status').innerHTML = 'Pending';
+                adBox.style.background = '#f3f4f6';
+            }
+            
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('progressBar').innerHTML = '0/4';
+            document.getElementById('watchAdBtn').innerHTML = '<i class="fas fa-play"></i> Ad #1 Dekho';
+            document.getElementById('watchAdBtn').disabled = false;
+            
+            document.getElementById('adsProgressSection').style.display = 'block';
+            document.getElementById('adsProgressSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Start Watching Ads
+        function startWatchingAds() {
+            if (currentAdIndex >= totalAds) {
+                // All ads completed, give reward
+                completeAllAds();
+                return;
+            }
+            
+            // Show ad modal
+            document.getElementById('adModalTitle').innerHTML = `📺 Advertisement #${currentAdIndex + 1} of 4`;
+            document.getElementById('adModal').style.display = 'flex';
+            
+            // Start 5 second timer
+            let seconds = 5;
+            const timerElement = document.getElementById('adTimer');
+            const nextBtn = document.getElementById('nextAdBtn');
+            nextBtn.style.display = 'none';
+            
+            adTimer = setInterval(() => {
+                seconds--;
+                timerElement.innerHTML = `${seconds} seconds remaining...`;
+                
+                if (seconds <= 0) {
+                    clearInterval(adTimer);
+                    timerElement.innerHTML = 'Ad completed! Click Next →';
+                    nextBtn.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Complete Current Ad
+        function completeCurrentAd() {
+            clearInterval(adTimer);
+            document.getElementById('adModal').style.display = 'none';
+            
+            // Mark current ad as completed
+            const adIndex = currentAdIndex + 1;
+            const adBox = document.getElementById(`ad${adIndex}`);
+            adBox.classList.add('completed');
+            adBox.querySelector('.ad-status').innerHTML = '✅ Watched';
+            adBox.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            adBox.style.color = 'white';
+            
+            currentAdIndex++;
+            
+            // Update progress bar
+            const progressPercent = (currentAdIndex / totalAds) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+            document.getElementById('progressBar').innerHTML = `${currentAdIndex}/${totalAds}`;
+            
+            // Update button
+            if (currentAdIndex < totalAds) {
+                document.getElementById('watchAdBtn').innerHTML = `<i class="fas fa-play"></i> Ad #${currentAdIndex + 1} Dekho`;
+                alert(`✅ Ad #${currentAdIndex} completed! ${totalAds - currentAdIndex} more ads to go.`);
+            } else {
+                document.getElementById('watchAdBtn').innerHTML = '<i class="fas fa-gift"></i> Claim Your Reward Now!';
+                document.getElementById('watchAdBtn').disabled = false;
+                alert(`🎉 Congratulations! You have watched all 4 ads!\nClick "Claim Reward" to get ₨ ${currentReward}`);
+            }
+        }
+
+        // Complete All Ads and Give Reward
+        function completeAllAds() {
+            if (currentAdIndex >= totalAds) {
+                // Add reward to balance
+                userData.balance += currentReward;
+                updateBalance();
+                
+                alert(`✅ You earned ₨ ${currentReward} for using ${currentTool}!\n\nNew Balance: ₨ ${userData.balance}`);
+                
+                // Reset
+                document.getElementById('adsProgressSection').style.display = 'none';
+                currentTool = null;
+                currentReward = 0;
+                currentAdIndex = 0;
+            } else {
+                alert(`Please watch all ${totalAds} ads first! (${currentAdIndex}/${totalAds} completed)`);
+            }
+        }
+
+        // Daily Check-in
+        function dailyCheckin() {
+            const today = new Date().toDateString();
+            
+            if (userData.lastCheckin === today) {
+                alert('❌ Aap aaj already check-in kar chuke hain! Kal aayein.');
+                return;
+            }
+            
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            if (userData.lastCheckin === yesterday.toDateString()) {
+                userData.streak++;
+            } else {
+                userData.streak = 1;
+            }
+            
+            const reward = 10;
+            userData.balance += reward;
+            userData.lastCheckin = today;
+            
+            document.getElementById('streakCount').innerHTML = userData.streak;
+            updateBalance();
+            
+            alert(`✅ Check-in successful!\n💰 You earned ₨ ${reward}!\n📊 Streak: ${userData.streak} days\n💵 Total Balance: ₨ ${userData.balance}`);
+            
+            localStorage.setItem('streak', userData.streak);
+            localStorage.setItem('lastCheckin', userData.lastCheckin);
+        }
+
+        // Withdrawal Functions
+        function openWithdrawModal() {
+            document.getElementById('modalBalance').innerHTML = `₨ ${userData.balance}`;
+            document.getElementById('withdrawModal').style.display = 'flex';
+        }
+
+        function closeWithdrawModal() {
+            document.getElementById('withdrawModal').style.display = 'none';
+        }
+
+        function processWithdraw() {
+            const amount = parseInt(document.getElementById('withdrawAmount').value);
+            const method = document.getElementById('withdrawMethod').value;
+            const account = document.getElementById('accountNo').value;
+            
+            if (!account) {
+                alert('❌ Please enter account number!');
+                return;
+            }
+            
+            if (amount < 200) {
+                alert('❌ Minimum withdrawal amount is ₨ 200!');
+                return;
+            }
+            
+            if (amount > userData.balance) {
+                alert('❌ Insufficient balance!');
+                return;
+            }
+            
+            let methodName = '';
+            if (method === 'easypaisa') methodName = 'EasyPaisa';
+            else if (method === 'bank') methodName = 'Bank';
+            else if (method === 'payoneer') methodName = 'Payoneer';
+            else methodName = 'JazzCash';
+            
+            alert(`✅ Withdrawal request submitted!\n\nAmount: ₨ ${amount}\nMethod: ${methodName}\nAccount: ${account}\n\nWill be processed within 24 hours.`);
+            
+            userData.balance -= amount;
+            updateBalance();
+            closeWithdrawModal();
+            
+            document.getElementById('withdrawAmount').value = '';
+            document.getElementById('accountNo').value = '';
+        }
+
+        // Initialize
+        updateBalance();
+        document.getElementById('streakCount').innerHTML = userData.streak;
+    </script>
+</body>
+</html>
