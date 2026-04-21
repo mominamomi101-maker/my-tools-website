@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Professional Background Remover - AI & Manual Tools</title>
+    <meta name="description" content="Remove background from images instantly with AI or manually. 100% free, no upload, privacy first.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-desc {
+            color: rgba(255,255,255,0.8);
+            font-size: 16px;
+        }
+
+        /* Mode Selector */
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 30px;
+        }
+
+        .mode-btn {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mode-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Main Editor Card */
+        .editor-card {
+            background: white;
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        /* Upload Area */
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafbfc;
+            margin-bottom: 30px;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: #f3f4ff;
+        }
+
+        .upload-area.dragging {
+            border-color: var(--primary);
+            background: #eef2ff;
+            transform: scale(1.01);
+        }
+
+        .upload-icon-lg {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .upload-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .upload-sub {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        /* Editor Workspace */
+        .editor-workspace {
+            display: none;
+        }
+
+        .workspace-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .image-preview-area {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .preview-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .preview-label {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .image-box {
+            background: repeating-conic-gradient(#e2e8f0 0% 25%, #f1f5f9 0% 50%) 50% / 20px 20px;
+            border-radius: 16px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+        }
+
+        /* Canvas for Manual Mode */
+        #manualCanvas {
+            display: none;
+            max-width: 100%;
+            cursor: crosshair;
+        }
+
+        .canvas-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 16px;
+        }
+
+        .tool-group {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            padding: 0 10px;
+            border-right: 1px solid var(--border);
+        }
+
+        .tool-group:last-child {
+            border-right: none;
+        }
+
+        .tool-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tool-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .slider-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 10px;
+        }
+
+        .slider-control input {
+            width: 120px;
+        }
+
+        .slider-control label {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--dark);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            display: none;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        /* Status Message */
+        .status-message {
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+            display: none;
+        }
+
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+
+        .status-info {
+            background: #dbeafe;
+            color: #1e40af;
+            display: block;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: block;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .editor-card {
+                padding: 20px 15px;
+            }
+            
+            .toolbar {
+                justify-content: center;
+            }
+            
+            .tool-group {
+                border-right: none;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">🎨</div>
+                <h1>
+                    Background Remover
+                    <span class="badge">PROFESSIONAL</span>
+                </h1>
+            </div>
+            <p class="header-desc">Remove backgrounds instantly with AI or manually fine-tune</p>
+        </div>
+
+        <!-- Mode Selector -->
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="ai">
+                <span>🤖</span> AI Auto Remove
+            </button>
+            <button class="mode-btn" data-mode="manual">
+                <span>✏️</span> Manual Remove
+            </button>
+        </div>
+
+        <!-- Main Editor Card -->
+        <div class="editor-card">
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon-lg">📸</div>
+                <div class="upload-title">Upload Your Image</div>
+                <div class="upload-sub">Click, paste, or drag & drop • PNG, JPG up to 25MB</div>
+            </div>
+            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg, image/webp">
+
+            <!-- Editor Workspace -->
+            <div class="editor-workspace" id="editorWorkspace">
+                <!-- AI Mode Content -->
+                <div id="aiModeContent">
+                    <div class="image-preview-area">
+                        <div class="preview-col">
+                            <div class="preview-header">
+                                <span class="preview-label">Original</span>
+                            </div>
+                            <div class="image-box">
+                                <img id="originalImage" alt="Original">
+                            </div>
+                        </div>
+                        <div class="preview-col">
+                            <div class="preview-header">
+                                <span class="preview-label">Result</span>
+                            </div>
+                            <div class="image-box">
+                                <img id="resultImage" alt="Result">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Mode Content -->
+                <div id="manualModeContent" style="display: none;">
+                    <div class="image-preview-area">
+                        <div class="preview-col">
+                            <div class="preview-header">
+                                <span class="preview-label">Edit Canvas</span>
+                                <span style="font-size: 12px; color: var(--gray);">Draw to erase background</span>
+                            </div>
+                            <div class="image-box" style="padding: 10px;">
+                                <div class="canvas-container">
+                                    <img id="manualImage" style="display: none;">
+                                    <canvas id="manualCanvas"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-col">
+                            <div class="preview-header">
+                                <span class="preview-label">Preview</span>
+                            </div>
+                            <div class="image-box">
+                                <img id="manualPreview" alt="Preview">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Manual Toolbar -->
+                    <div class="toolbar">
+                        <div class="tool-group">
+                            <button class="tool-btn active" data-tool="eraser" title="Eraser">🧽</button>
+                            <button class="tool-btn" data-tool="restore" title="Restore">↩️</button>
+                        </div>
+                        <div class="tool-group">
+                            <div class="slider-control">
+                                <label>Brush Size</label>
+                                <input type="range" id="brushSize" min="5" max="100" value="30">
+                                <span id="brushSizeValue">30</span>
+                            </div>
+                        </div>
+                        <div class="tool-group">
+                            <button class="tool-btn" id="undoBtn" title="Undo">↩️</button>
+                            <button class="tool-btn" id="redoBtn" title="Redo">↪️</button>
+                            <button class="tool-btn" id="clearAllBtn" title="Clear All">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Processing image...</div>
+                </div>
+
+                <!-- Status Message -->
+                <div class="status-message" id="statusMessage"></div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="processBtn" disabled>
+                        <span>🤖</span> Remove Background
+                    </button>
+                    <button class="btn btn-success" id="downloadBtn" style="display: none;">
+                        <span>⬇️</span> Download
+                    </button>
+                    <button class="btn btn-outline" id="newImageBtn" style="display: none;">
+                        <span>📷</span> New Image
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">🔒</span>
+                <span>100% Private - No Upload</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">⚡</span>
+                <span>Fast AI Processing</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">💰</span>
+                <span>Completely Free</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🎯</span>
+                <span>High Quality Output</span>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <a href="index.html" class="back-link">← Back to All Tools</a>
+    </div>
+
+    <!-- Import Maps and Scripts -->
+    <script type="importmap">
+        {
+            "imports": {
+                "@imgly/background-removal": "https://esm.sh/@imgly/background-removal@1.1.1"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import removeBackground from '@imgly/background-removal';
+
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const editorWorkspace = document.getElementById('editorWorkspace');
+        const aiModeContent = document.getElementById('aiModeContent');
+        const manualModeContent = document.getElementById('manualModeContent');
+        const originalImage = document.getElementById('originalImage');
+        const resultImage = document.getElementById('resultImage');
+        const processBtn = document.getElementById('processBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const newImageBtn = document.getElementById('newImageBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressT
