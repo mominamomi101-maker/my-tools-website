@@ -1,69 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Remove Background - Free Online Tool</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-magic"></i> AI RemoveBG Pro</h1>
-            <p>Remove background in 2 seconds • Free • HD Quality</p>
-        </header>
-
-        <div class="upload-area" id="uploadArea">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <h3>Drop image or click to upload</h3>
-            <p>JPG, PNG, WebP • Max 10MB</p>
-            <input type="file" id="imageInput" accept="image/*" hidden>
-            <button class="upload-btn">Choose Image</button>
+<!-- COMPLETE DOWNLOAD SECTION -->
+<div class="download-section" id="downloadSection" style="display: none;">
+    <div class="download-card">
+        <div class="success-header">
+            <i class="fas fa-check-circle"></i>
+            <h3>✅ Perfect! Ready to Download</h3>
+            <p>HD Quality • Transparent PNG • No Watermark</p>
         </div>
-
-        <div class="editor" id="editor" style="display:none;">
-            <div class="tools">
-                <button class="tool-btn active" data-tool="remove">
-                    <i class="fas fa-cut"></i> Auto Remove
-                </button>
-                <button class="tool-btn" data-tool="brush">
-                    <i class="fas fa-paint-brush"></i> Erase
-                </button>
-                <button class="tool-btn" data-tool="adjust">
-                    <i class="fas fa-sliders-h"></i> Enhance
-                </button>
-            </div>
-            <canvas id="canvas"></canvas>
-            <div class="controls">
-                <div class="control active" id="removeCtrl">
-                    <label>AI Precision: <span id="precisionVal">70</span>%</label>
-                    <input type="range" id="precision" min="0" max="100" value="70">
-                    <button onclick="removeBG()">Remove Background</button>
-                </div>
-                <div class="control" id="brushCtrl">
-                    <label>Brush Size: <span id="brushVal">20</span>px</label>
-                    <input type="range" id="brushSize" min="5" max="50" value="20">
-                    <button onclick="toggleBrush()">Toggle Brush</button>
-                </div>
-                <div class="control" id="adjustCtrl">
-                    <label>Brightness: <span id="brightVal">0</span></label>
-                    <input type="range" id="brightness" min="-100" max="100" value="0">
-                    <button onclick="applyAdjust()">Apply</button>
-                </div>
-            </div>
+        
+        <!-- Preview -->
+        <div class="preview-box">
+            <canvas id="previewCanvas"></canvas>
         </div>
-
-        <div class="download" id="download" style="display:none;">
-            <canvas id="preview"></canvas>
-            <div class="download-btns">
-                <button onclick="download('png')">PNG Download</button>
-                <button onclick="download('jpg')">JPG Download</button>
-                <button onclick="newImage()">New Image</button>
-            </div>
+        
+        <!-- Download Buttons -->
+        <div class="main-buttons">
+            <button class="dl-btn png-btn" onclick="downloadImage('png')">
+                <i class="fas fa-file-image"></i>
+                <span>PNG</span>
+                <small>Transparent Background</small>
+            </button>
+            <button class="dl-btn jpg-btn" onclick="downloadImage('jpg')">
+                <i class="fas fa-file-image"></i>
+                <span>JPG</span>
+                <small>White Background</small>
+            </button>
+        </div>
+        
+        <!-- NEW FEATURES -->
+        <div class="features-row">
+            <button class="feature-btn share-btn" onclick="shareImage()">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+            <button class="feature-btn whatsapp-btn" onclick="whatsappShare()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="feature-btn copy-btn" onclick="copyLink()">
+                <i class="fas fa-link"></i> Copy Link
+            </button>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-bar">
+            <span class="stat-item"><i class="fas fa-hd"></i> HD Quality</span>
+            <span class="stat-item"><i class="fas fa-infinity"></i> Unlimited</span>
+            <span class="stat-item"><i class="fas fa-bolt"></i> 2 Seconds</span>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="action-btn edit-btn" onclick="editAgain()">
+                <i class="fas fa-edit"></i> Edit Again
+            </button>
+            <button class="action-btn new-btn" onclick="newImage()">
+                <i class="fas fa-plus"></i> New Image
+            </button>
+        </div>
+        
+        <!-- Support -->
+        <div class="support-link">
+            <a href="https://wa.me/919876543210?text=Hi!%20RemoveBG%20tool%20awesome!" target="_blank">
+                <i class="fab fa-whatsapp"></i> Need Help? WhatsApp
+            </a>
         </div>
     </div>
-    <script src="script.js"></script>
-    <script src="bg-remover.js"></script>
-</body>
-</html>
+</div>
