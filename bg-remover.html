@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remove Background from Image – 100% Free</title>
-    <meta name="description" content="Remove image backgrounds automatically in 5 seconds. No signup, 100% free, privacy guaranteed.">
+    <title>Background Remover - Free Tool</title>
     <style>
         * {
             margin: 0;
@@ -13,702 +12,509 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.5;
-        }
-
-        /* Header */
-        .header {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 22px;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .nav {
-            display: flex;
-            gap: 32px;
             align-items: center;
+            padding: 20px;
         }
 
-        .nav a {
-            text-decoration: none;
-            color: #4b5563;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .nav a:hover {
-            color: #1a1a1a;
-        }
-
-        .lang-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border: 1px solid #e5e7eb;
-            border-radius: 30px;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
-            max-width: 900px;
-            margin: 0 auto;
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
         h1 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .hero-desc {
-            font-size: 20px;
-            color: #4b5563;
-            margin-bottom: 40px;
-        }
-
-        .free-badge {
-            background: #10b981;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 30px;
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
             font-size: 14px;
-            font-weight: 600;
-            display: inline-block;
-            margin-left: 12px;
-        }
-
-        /* Upload Container */
-        .upload-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .upload-area {
-            background: #f9fafb;
-            border: 2px dashed #d1d5db;
-            border-radius: 24px;
-            padding: 60px 30px;
+            background: #f8f9ff;
+            border: 2px dashed #764ba2;
+            border-radius: 16px;
+            padding: 40px 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-        }
-
-        .upload-area:hover {
-            border-color: #1a1a1a;
-            background: #f3f4f6;
-        }
-
-        .upload-area.dragging {
-            border-color: #1a1a1a;
-            background: #e5e7eb;
-        }
-
-        .upload-icon {
-            font-size: 64px;
+            transition: all 0.3s;
             margin-bottom: 20px;
         }
 
-        .upload-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1a1a1a;
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f0f2ff;
         }
 
-        .upload-sub {
-            color: #6b7280;
-            font-size: 15px;
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
-        .upload-options {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
+        .upload-text {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .upload-hint {
+            color: #888;
+            font-size: 13px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .preview-area {
+            display: none;
+            gap: 15px;
             margin: 20px 0;
-            color: #6b7280;
-            font-size: 14px;
         }
 
-        .upload-options span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .sample-section {
-            margin-top: 30px;
-        }
-
-        .sample-text {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .sample-images {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .sample-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .sample-img:hover {
-            border-color: #1a1a1a;
-            transform: scale(1.05);
-        }
-
-        #fileInput, #urlInput {
-            display: none;
-        }
-
-        /* Editor Section */
-        .editor-section {
-            display: none;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .editor-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .editor-title {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .editor-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .image-comparison {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .image-card {
+        .preview-box {
             flex: 1;
-            min-width: 300px;
-            background: #f9fafb;
-            border-radius: 16px;
-            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 12px;
             text-align: center;
         }
 
-        .image-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            color: #4b5563;
-            font-size: 14px;
-            font-weight: 500;
+        .preview-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 10px;
         }
 
-        .image-wrapper {
-            background: repeating-conic-gradient(#e5e7eb 0% 25%, #f3f4f6 0% 50%) 50% / 16px 16px;
-            border-radius: 12px;
-            min-height: 300px;
+        .image-container {
+            background: repeating-conic-gradient(#ddd 0% 25%, #eee 0% 50%) 50% / 16px 16px;
+            border-radius: 10px;
+            min-height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
         }
 
-        .image-wrapper img {
+        .image-container img {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 200px;
             border-radius: 8px;
         }
 
-        /* Progress Bar */
-        .progress-section {
-            margin: 30px 0;
+        .progress-container {
             display: none;
+            margin: 20px 0;
         }
 
         .progress-bar {
-            height: 6px;
-            background: #e5e7eb;
+            height: 8px;
+            background: #e0e0e0;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 12px;
         }
 
         .progress-fill {
             height: 100%;
-            background: #1a1a1a;
+            background: linear-gradient(90deg, #667eea, #764ba2);
             width: 0%;
             transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .status {
+            padding: 12px;
             border-radius: 10px;
-        }
-
-        .progress-status {
-            display: flex;
-            justify-content: space-between;
-            color: #4b5563;
+            margin: 15px 0;
             font-size: 14px;
+            display: none;
         }
 
-        /* Buttons */
+        .status.info {
+            background: #e3f2fd;
+            color: #1565c0;
+            display: block;
+        }
+
+        .status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+            display: block;
+        }
+
         .btn {
-            padding: 14px 28px;
-            border-radius: 40px;
+            padding: 14px 24px;
+            border-radius: 50px;
             font-weight: 600;
             font-size: 16px;
             border: none;
             cursor: pointer;
+            width: 100%;
+            margin: 8px 0;
             transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .btn-primary {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
 
-        .btn-primary:hover {
-            background: #333;
-            transform: translateY(-1px);
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
-        .btn-primary:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
+        .btn-success {
+            background: #4caf50;
+            color: white;
+            display: none;
         }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid #d1d5db;
-            color: #1a1a1a;
+            border: 2px solid #764ba2;
+            color: #764ba2;
+            display: none;
         }
 
-        .btn-outline:hover {
-            border-color: #1a1a1a;
-        }
-
-        .btn-success {
-            background: #10b981;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #059669;
-        }
-
-        /* Features Section */
-        .features {
-            max-width: 1000px;
-            margin: 80px auto;
-            padding: 0 20px;
+        .back-link {
+            display: block;
             text-align: center;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 48px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            text-align: center;
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-desc {
-            color: #6b7280;
-            font-size: 15px;
-        }
-
-        /* Footer */
-        .footer {
-            border-top: 1px solid #e5e7eb;
-            padding: 30px 40px;
-            margin-top: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .footer-links a {
+            margin-top: 20px;
+            color: #667eea;
             text-decoration: none;
-            color: #4b5563;
             font-size: 14px;
         }
 
-        .footer-copyright {
-            color: #9ca3af;
-            font-size: 14px;
+        .back-link:hover {
+            text-decoration: underline;
         }
 
-        /* Status Message */
-        .status-message {
+        .sample-section {
+            margin-top: 20px;
             text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            margin: 20px 0;
-            font-size: 14px;
-            display: none;
         }
 
-        .status-success {
-            background: #d1fae5;
-            color: #065f46;
+        .sample-text {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
         }
 
-        .status-error {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .status-info {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 16px 20px;
-            }
-            
-            h1 {
-                font-size: 36px;
-            }
-            
-            .hero-desc {
-                font-size: 18px;
-            }
-            
-            .nav {
-                display: none;
-            }
-            
-            .upload-area {
-                padding: 40px 20px;
-            }
-            
-            .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-links {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-        }
-
-        /* URL Input Modal */
-        .url-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .url-modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-        }
-
-        .url-modal h3 {
-            margin-bottom: 20px;
-        }
-
-        .url-input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .url-input:focus {
-            outline: none;
-            border-color: #1a1a1a;
-        }
-
-        .modal-actions {
+        .sample-imgs {
             display: flex;
-            gap: 12px;
-            justify-content: flex-end;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .sample-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .sample-img:hover {
+            border-color: #764ba2;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <div class="logo-icon">🎨</div>
-            <span class="logo-text">Background Remover</span>
-        </div>
-        <nav class="nav">
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How it Works</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#api">API</a>
-            <div class="lang-selector">
-                <span>🌐</span>
-                <span>EN</span>
-            </div>
-        </nav>
-    </header>
+    <div class="container">
+        <h1>🎨 Background Remover</h1>
+        <p class="subtitle">Remove background instantly with AI • 100% Free • No Signup</p>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>
-            Remove Image Background
-            <span class="free-badge">100% FREE</span>
-        </h1>
-        <p class="hero-desc">Remove backgrounds 100% automatically in 5 seconds with one click</p>
-    </section>
-
-    <!-- Upload Section -->
-    <section class="upload-container">
+        <!-- Upload Area -->
         <div class="upload-area" id="uploadArea">
             <div class="upload-icon">📸</div>
-            <div class="upload-title">Upload Image</div>
-            <div class="upload-sub">or drag & drop a file</div>
+            <div class="upload-text">Click to Upload or Drag & Drop</div>
+            <div class="upload-hint">PNG, JPG, JPEG • Max 25MB</div>
         </div>
-        
-        <div class="upload-options">
-            <span id="pasteBtn">📋 paste image or Ctrl+V</span>
-            <span id="urlBtn">🔗 paste image URL</span>
-        </div>
-        
-        <div class="sample-section">
-            <p class="sample-text">No image? Try one of these:</p>
-            <div class="sample-images">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="sample-img" alt="Sample 1">
-                <img src="https://images.unsplash.com/photo-1494790108755-2612896aaf42?w=100&h=100&fit=crop" class="sample-img" alt="Sample 2">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="sample-img" alt="Sample 3">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" class="sample-img" alt="Sample 4">
-            </div>
-        </div>
-    </section>
+        <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg">
 
-    <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg, image/webp">
-    <input type="text" id="urlInput" placeholder="Enter image URL">
-
-    <!-- Editor Section -->
-    <section class="editor-section" id="editorSection">
-        <div class="editor-header">
-            <h2 class="editor-title">Edit Result</h2>
-            <div class="editor-actions">
-                <button class="btn btn-outline" id="newImageBtn">New Image</button>
-                <button class="btn btn-success" id="downloadBtn">Download</button>
-            </div>
-        </div>
-        
-        <div class="image-comparison">
-            <div class="image-card">
-                <div class="image-label">
-                    <span>Original</span>
-                    <span id="originalSize"></span>
-                </div>
-                <div class="image-wrapper">
+        <!-- Preview Area -->
+        <div class="preview-area" id="previewArea">
+            <div class="preview-box">
+                <div class="preview-label">ORIGINAL</div>
+                <div class="image-container">
                     <img id="originalImg" alt="Original">
                 </div>
             </div>
-            <div class="image-card">
-                <div class="image-label">
-                    <span>Background Removed</span>
-                    <span id="resultSize"></span>
-                </div>
-                <div class="image-wrapper">
+            <div class="preview-box">
+                <div class="preview-label">RESULT</div>
+                <div class="image-container">
                     <img id="resultImg" alt="Result">
                 </div>
             </div>
         </div>
-        
+
         <!-- Progress -->
-        <div class="progress-section" id="progressSection">
+        <div class="progress-container" id="progressContainer">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="progress-status">
-                <span id="progressText">Processing image...</span>
-                <span id="progressPercent">0%</span>
-            </div>
+            <div class="progress-text" id="progressText">Downloading AI model...</div>
         </div>
-        
+
         <!-- Status -->
-        <div class="status-message" id="statusMessage"></div>
-        
-        <!-- Process Button -->
-        <div style="text-align: center; margin: 20px 0;">
-            <button class="btn btn-primary" id="processBtn" style="min-width: 200px;" disabled>
-                Remove Background
-            </button>
-        </div>
-    </section>
+        <div class="status" id="statusMessage"></div>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2>Stunning Quality in Seconds</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-title">5-Second Processing</div>
-                <div class="feature-desc">Remove backgrounds automatically with AI in just seconds</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-title">100% Private</div>
-                <div class="feature-desc">Images never leave your device. No server uploads</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <div class="feature-title">Professional Results</div>
-                <div class="feature-desc">Perfect edge detection, even with complex hair</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <div class="feature-title">Completely Free</div>
-                <div class="feature-desc">No credits, no limits, no hidden fees</div>
+        <!-- Sample Images -->
+        <div class="sample-section" id="sampleSection">
+            <p class="sample-text">Try with sample images:</p>
+            <div class="sample-imgs">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="sample-img" alt="Sample">
+                <img src="https://images.unsplash.com/photo-1494790108755-2612896aaf42?w=100&h=100&fit=crop" class="sample-img" alt="Sample">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="sample-img" alt="Sample">
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#">About</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact</a>
-            <a href="#">API</a>
-        </div>
-        <div class="footer-copyright">
-            © 2024 Background Remover. All rights reserved.
-        </div>
-    </footer>
+        <!-- Buttons -->
+        <button class="btn btn-primary" id="removeBtn" disabled>🎯 Remove Background</button>
+        <button class="btn btn-success" id="downloadBtn">⬇ Download PNG</button>
+        <button class="btn btn-outline" id="newBtn">📷 New Image</button>
 
-    <!-- URL Modal -->
-    <div class="url-modal" id="urlModal">
-        <div class="url-modal-content">
-            <h3>Enter Image URL</h3>
-            <input type="text" class="url-input" id="modalUrlInput" placeholder="https://example.com/image.jpg">
-            <div class="modal-actions">
-                <button class="btn btn-outline" id="cancelUrlBtn">Cancel</button>
-                <button class="btn btn-primary" id="loadUrlBtn">Load Image</button>
-            </div>
-        </div>
+        <a href="index.html" class="back-link">← Back to Tools</a>
     </div>
 
-    <!-- Script -->
+    <!-- IMPORTANT: Load library from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.1.1/dist/index.umd.min.js"></script>
-    
+
     <script>
         (function() {
-            // Check library
+            // Check if library is loaded
             if (typeof window.removeBackground === 'undefined') {
-                alert('Failed to load AI model. Please check your internet connection.');
+                document.getElementById('statusMessage').textContent = '⚠️ AI model loading... Please wait or refresh.';
+                document.getElementById('statusMessage').className = 'status info';
+                
+                // Retry after 2 seconds
+                setTimeout(() => {
+                    if (typeof window.removeBackground === 'undefined') {
+                        document.getElementById('statusMessage').textContent = '❌ Failed to load AI model. Check your internet connection.';
+                        document.getElementById('statusMessage').className = 'status error';
+                    }
+                }, 3000);
                 return;
             }
-            
+
             const removeBackground = window.removeBackground;
-            
+
             // DOM Elements
             const uploadArea = document.getElementById('uploadArea');
             const fileInput = document.getElementById('fileInput');
-            const editorSection = document.getElementById('editorSection');
-            const uploadContainer = document.querySelector('.upload-container');
+            const previewArea = document.getElementById('previewArea');
             const originalImg = document.getElementById('originalImg');
             const resultImg = document.getElementById('resultImg');
-            const originalSize = document.getElementById('originalSize');
-            const resultSize = document.getElementById('resultSize');
-            const processBtn = document.getElementById('processBtn');
+            const removeBtn = document.getElementById('removeBtn');
             const downloadBtn = document.getElementById('downloadBtn');
-            const newImageBtn = document.getElementById('newImageBtn');
-            const progressSection = document.getElementById('progressSection');
+            const newBtn = document.getElementById('newBtn');
+            const progressContainer = document.getElementById('progressContainer');
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
-            const progressPercent = document.getElementById('progressPercent');
-            const statusMessage = document.getElementById('statusMess
+            const statusMessage = document.getElementById('statusMessage');
+            const sampleSection = document.getElementById('sampleSection');
+            const sampleImgs = document.querySelectorAll('.sample-img');
+
+            let selectedFile = null;
+            let resultBlob = null;
+
+            // Show status
+            function showStatus(text, type) {
+                statusMessage.textContent = text;
+                statusMessage.className = `status ${type}`;
+            }
+
+            // Hide sample section when image loaded
+            function hideSampleSection() {
+                sampleSection.style.display = 'none';
+            }
+
+            function showSampleSection() {
+                sampleSection.style.display = 'block';
+            }
+
+            // Load image from file
+            function loadImage(file) {
+                if (file.size > 25 * 1024 * 1024) {
+                    showStatus('❌ File too large! Max 25MB', 'error');
+                    return;
+                }
+
+                selectedFile = file;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    originalImg.src = e.target.result;
+                    previewArea.style.display = 'flex';
+                    resultImg.src = '';
+                    removeBtn.disabled = false;
+                    downloadBtn.style.display = 'none';
+                    newBtn.style.display = 'none';
+                    hideSampleSection();
+                    showStatus('✅ Image loaded. Click "Remove Background"', 'success');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Upload handlers
+            uploadArea.addEventListener('click', () => fileInput.click());
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#667eea';
+                uploadArea.style.background = '#f0f2ff';
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = '#764ba2';
+                uploadArea.style.background = '#f8f9ff';
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#764ba2';
+                uploadArea.style.background = '#f8f9ff';
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    loadImage(file);
+                } else {
+                    showStatus('❌ Please select an image file', 'error');
+                }
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files[0]) {
+                    loadImage(e.target.files[0]);
+                }
+            });
+
+            // Sample images
+            sampleImgs.forEach(img => {
+                img.addEventListener('click', async () => {
+                    try {
+                        showStatus('Loading sample image...', 'info');
+                        const response = await fetch(img.src.replace('100&h=100', '400&h=400'));
+                        const blob = await response.blob();
+                        loadImage(blob);
+                    } catch (error) {
+                        showStatus('❌ Failed to load sample', 'error');
+                    }
+                });
+            });
+
+            // Remove Background
+            removeBtn.addEventListener('click', async () => {
+                if (!selectedFile) return;
+
+                removeBtn.disabled = true;
+                removeBtn.textContent = '⏳ Processing...';
+                progressContainer.style.display = 'block';
+                progressFill.style.width = '10%';
+                progressText.textContent = 'Loading AI model...';
+                showStatus('🤖 AI is analyzing image...', 'info');
+
+                try {
+                    const blob = await removeBackground(selectedFile, {
+                        progress: (key, current, total) => {
+                            const percent = Math.round((current / total) * 100);
+                            progressFill.style.width = Math.min(30 + percent * 0.6, 90) + '%';
+                            progressText.textContent = `Processing: ${percent}%`;
+                        },
+                        model: 'medium'
+                    });
+
+                    progressFill.style.width = '100%';
+                    progressText.textContent = '✅ Complete!';
+
+                    resultBlob = blob;
+                    resultImg.src = URL.createObjectURL(blob);
+                    downloadBtn.style.display = 'block';
+                    newBtn.style.display = 'block';
+                    showStatus('🎉 Background removed successfully!', 'success');
+
+                    setTimeout(() => {
+                        progressContainer.style.display = 'none';
+                    }, 1000);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showStatus('❌ Error: ' + error.message, 'error');
+                    progressContainer.style.display = 'none';
+                } finally {
+                    removeBtn.textContent = '🎯 Remove Background';
+                    removeBtn.disabled = false;
+                }
+            });
+
+            // Download
+            downloadBtn.addEventListener('click', () => {
+                if (resultBlob) {
+                    const url = URL.createObjectURL(resultBlob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'no-background.png';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    showStatus('📥 Downloaded!', 'success');
+                }
+            });
+
+            // New Image
+            newBtn.addEventListener('click', () => {
+                previewArea.style.display = 'none';
+                removeBtn.disabled = true;
+                downloadBtn.style.display = 'none';
+                newBtn.style.display = 'none';
+                progressContainer.style.display = 'none';
+                fileInput.value = '';
+                selectedFile = null;
+                resultBlob = null;
+                showSampleSection();
+                showStatus('', 'info');
+            });
+
+            // Paste support
+            document.addEventListener('paste', (e) => {
+                const items = e.clipboardData.items;
+                for (let item of items) {
+                    if (item.type.startsWith('image/')) {
+                        const file = item.getAsFile();
+                        loadImage(file);
+                        break;
+                    }
+                }
+            });
+
+            showStatus('✨ Ready! Upload an image to start.', 'info');
+        })();
+    </script>
+</body>
+            </html>
