@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Remove Background - Free Online Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-magic"></i> AI RemoveBG Pro</h1>
+            <p>Remove background in 2 seconds • Free • HD Quality</p>
+        </header>
+
+        <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <h3>Drop image or click to upload</h3>
+            <p>JPG, PNG, WebP • Max 10MB</p>
+            <input type="file" id="imageInput" accept="image/*" hidden>
+            <button class="upload-btn">Choose Image</button>
+        </div>
+
+        <div class="editor" id="editor" style="display:none;">
+            <div class="tools">
+                <button class="tool-btn active" data-tool="remove">
+                    <i class="fas fa-cut"></i> Auto Remove
+                </button>
+                <button class="tool-btn" data-tool="brush">
+                    <i class="fas fa-paint-brush"></i> Erase
+                </button>
+                <button class="tool-btn" data-tool="adjust">
+                    <i class="fas fa-sliders-h"></i> Enhance
+                </button>
+            </div>
+            <canvas id="canvas"></canvas>
+            <div class="controls">
+                <div class="control active" id="removeCtrl">
+                    <label>AI Precision: <span id="precisionVal">70</span>%</label>
+                    <input type="range" id="precision" min="0" max="100" value="70">
+                    <button onclick="removeBG()">Remove Background</button>
+                </div>
+                <div class="control" id="brushCtrl">
+                    <label>Brush Size: <span id="brushVal">20</span>px</label>
+                    <input type="range" id="brushSize" min="5" max="50" value="20">
+                    <button onclick="toggleBrush()">Toggle Brush</button>
+                </div>
+                <div class="control" id="adjustCtrl">
+                    <label>Brightness: <span id="brightVal">0</span></label>
+                    <input type="range" id="brightness" min="-100" max="100" value="0">
+                    <button onclick="applyAdjust()">Apply</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="download" id="download" style="display:none;">
+            <canvas id="preview"></canvas>
+            <div class="download-btns">
+                <button onclick="download('png')">PNG Download</button>
+                <button onclick="download('jpg')">JPG Download</button>
+                <button onclick="newImage()">New Image</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="bg-remover.js"></script>
+</body>
+</html>
